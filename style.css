@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.doggos {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+form {
+    display: block;
+    margin-top: 0rem;
+}
+
+select {
+    overflow: visible;
+    position: relative;
+    margin: .5rem;
+}
+
+#count {
+    position: inherit;
+    padding: .25rem;
+    width: 5rem;
+    margin-right: 50%;
+    margin-left: auto;
+
+    
+}
+
+#btn {
+    position: relative;
+    float: right;
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+    border-width: .25rem;
+    align-items: flex-start;
+}
+#breeds {
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 12rem;
+    background-color: #fafafa;
+}
+
+#breeds li {
+    padding: .5rem;
+}
+#breeds li:hover {
+    padding: .5rem;
+    background-color: #dadada;
+}
+
+#img-container {
+    padding-left: 12rem;
+    width: 100%;
+    min-width: 6rem;
+    text-align: center;
+}
