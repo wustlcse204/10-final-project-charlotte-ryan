@@ -57,11 +57,11 @@
                 xhttp.send();
             }
 
-            function selectBreedList(response) {
-                if(response.status == "sucess") {
+           function selectBreedList(response) {
+                if(response.status == "success") {
                     return Object.keys(response.message);
                 }
-            }
+           }
 
             function getImgCount() {
                 var input = document.querySelector("#count");
@@ -78,7 +78,7 @@
                     if(this.readyState == 4 && this.status == 200)
                     {
                         var response = JSON.parse(this.responseText);
-                        var imageList = selectImageList;
+                        var imageList = selectImageList(response);
                         updateImages(imageList);
                     }
                     else if (this.readyState == 4)
