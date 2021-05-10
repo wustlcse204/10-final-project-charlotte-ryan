@@ -1,7 +1,7 @@
 body {
     margin: 0;
     background-color: #fffbdb;
-    color: #5d576b;
+    color: #7776bc;
     font-family: 'Crete Round', serif;
 }
 
@@ -46,7 +46,8 @@ header {
 }
 
 #btn { 
-    background-color: #cdc7e5;
+    background-color: #7776bcbd;
+    color: #fffbdb;
 }
 #btn:hover {
     cursor: pointer;
@@ -61,4 +62,20 @@ header {
 
 #doggos {
     margin-left: 1rem;
+}
+
+@media (max-width:1000px) {
+    #img-container {
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+        width: auto;
+        height: auto;
+        padding: .5rem;
+    }
+    #form {
+        display: grid;
+        grid-template-columns: (3, auto);
+        text-align: center;
+        float: left;
+    }
 }
