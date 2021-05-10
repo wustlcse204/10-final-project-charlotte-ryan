@@ -2,33 +2,39 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Doggos!</title>
+        <title>Doggy Viewer</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="https://img.icons8.com/pastel-glyph/64/000000/dog-sit--v3.png"/>
+        <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap" rel="stylesheet">    
     </head>
 
     <body>
-        <header>
-            <h1 id="doggos">Doggos: Dog Breeds</h1>
-            <span id="breed-name"></span>
-        </header>
+        <header><h1>Doggy Viewer</h1></header>
 
-        <form id="dogs-form">
+        <form id="form">
             <select id="breeds" name="breeds"></select>
-            <input id="count" type="number" min="1" max="100" value="1">
-            <input type="button" id="btn" value="Show dogs!">
+            <input id="count" type="number" value="1">
+            <input type="button" id="btn" value="VIEW">
         </form>
 
-        <section id="img-container">
+        <div class="content">
+            <h1 id="doggos">
+                Doggy: 
+                <span id="breed-name"></span>
+            </h1>
 
-        </section>
+            <section id="img-container"></section>
+        </div>
 
         <script>
 
             window.onload = function() {
-                loadDogBreeds();
+                getBreeds();
             }
 
-            function loadDogBreeds() {
+            function getBreeds() {
                 var url = "https://dog.ceo/api/breeds/list/all";
                 var xhttp = new XMLHttpRequest();
 
@@ -38,8 +44,8 @@
                     {
                         console.log("readyState == 4 && status == 200");
                         var response = JSON.parse(this.responseText);
-                        var breedList = extractBreedList(response);
-                        updateBreedList(breedList);
+                        var breedList = selectBreedList(response);
+                        updateList(breedList);
                     }
                     else if (this.readyState == 4)
                     {
@@ -51,15 +57,20 @@
                 xhttp.send();
             }
 
-            function extractBreedList(response) {
-                if (response.status == "success") {
+            function selectBreedList(response) {
+                if(response.status == "sucess") {
                     return Object.keys(response.message);
                 }
             }
 
-            function loadBreedImages(breed) {
-                var imageCount = getImageCount();
-                var url = 'https://dog.ceo/api/breed/${breed}/images/random/${imageCount}';
+            function getImgCount() {
+                var input = document.querySelector("#count");
+                return input.value;
+            }
+
+            function getImages(breed) {
+                var imgCount = getImgCount();
+                var url = `https://dog.ceo/api/breed/${breed}/images/random/${imgCount}`;
                 var xhttp = new XMLHttpRequest();
 
                 xhttp.onreadystatechange = function()
@@ -67,8 +78,8 @@
                     if(this.readyState == 4 && this.status == 200)
                     {
                         var response = JSON.parse(this.responseText);
-                        var breedImageList = extractBreedImageList(response);
-                        updateBreedImages(breedImageList);
+                        var imageList = selectImageList;
+                        updateImages(imageList);
                     }
                     else if (this.readyState == 4)
                     {
@@ -80,42 +91,37 @@
                 xhttp.send();
             }
 
-            function updateBreedImages(breedImageList) {
+            function selectImageList(response) {
+                if(response.status == "success") {
+                    return response.message;
+                }
+            }
+
+            function updateImages(imageList) {
                 var imgContainer = document.querySelector("#img-container");
                 var selectBreeds = document.querySelector("#breeds");
-                var breedName = document.querySelector("#breed-name");
+                var name = document.querySelector("#breed-name");
 
-                breedName.innerHTML = selectBreeds.value;
                 imgContainer.innerHTML = " ";
-
+                name.innerHTML = selectBreeds.value;
+                
                 function createImgElement(url) {
                     var img = document.createElement("img");
                     img.src = url;
                     return img;
                 }
 
-                breedImageList.forEach(function(url) {
+                imageList.forEach(function(url) {
                     var img = createImgElement(url);
                     imgContainer.appendChild(img);
                 });
             }
 
-            function extractBreedImageList(response) {
-                if (response.status == "success") {
-                    return response.message;
-                }
-            }
-
-            function getImageCount() {
-                var input = document.querySelector("#count");
-                return input.value;
-            }
-
-            function updateBreedList(breedList) {
+            function updateList(breedList) {
                 var select = document.querySelector("#breeds");
                 var btn = document.querySelector("#btn");
 
-                function createBreedOption(name) {
+                function createOptions(name) {
                     var option = document.createElement("option");
                     option.value = name;
                     option.innerHTML = name;
@@ -124,17 +130,15 @@
                 }
 
                 breedList.forEach(function(breed) {
-                    var breedOption = createBreedOption(breed);
+                    var breedOption = createOptions(breed);
                     select.appendChild(breedOption);
                 });
 
                 btn.onclick = function(e) {
                     var breed = select.value;
-                    loadBreedImages(breed);
+                    getImages(breed);
                 };
             }
-
-
 
         </script>
     </body>

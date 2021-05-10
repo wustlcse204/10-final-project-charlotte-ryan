@@ -1,20 +1,21 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
+/*body {
     padding: 0;
     margin: 0;
 }
 
-header {
+.content {
     text-align: center;
+    display: block;
 }
 
-section {
+#img-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 12rem;
+    width: 100%;
+    min-width: 6rem;
+    text-align: center;
 }
 
 .doggos {
@@ -24,15 +25,22 @@ section {
     text-align: center;
 }
 
-form {
+#dogs-form {
     display: block;
     margin-top: 0rem;
 }
 
-select {
+#breeds {
     overflow: visible;
     position: relative;
     margin: .5rem;
+    padding: 0;
+    border-style: solid;
+    align-items: center;
+    display: inline-block;
+    background-color: #c4c4c4;
+    list-style-type: none;
+    
 }
 
 #count {
@@ -54,14 +62,6 @@ select {
     border-width: .25rem;
     align-items: flex-start;
 }
-#breeds {
-    position: absolute;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    width: 12rem;
-    background-color: #fafafa;
-}
 
 #breeds li {
     padding: .5rem;
@@ -70,10 +70,61 @@ select {
     padding: .5rem;
     background-color: #dadada;
 }
+*/
+
+header {
+    color: #f7567c;
+    text-align: center;
+    text-transform: capitalize;
+    text-shadow: .15rem .15rem #5d576b;
+    text-decoration: underline;
+}
+
+body {
+    background-color: #fcfcfc;
+    color: #5d576b;
+    margin-left: 1rem;
+    font-family: 'Crete Round', serif;
+}
 
 #img-container {
-    padding-left: 12rem;
-    width: 100%;
-    min-width: 6rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#img-container img {
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#count, #breeds, #btn {
+    border-color: #f7567c;
+    box-shadow: none;
+    border-width: .15rem;
+    border-style: solid;
+    color: #5d576b;
+    background-color: #fffae3;
+    margin: .5rem;
+    font-size: 1.25em;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+#btn { 
+    background-color: #99e1d9a9;
+}
+#btn:hover {
+    cursor: pointer;
+    box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.7);
+}
+
+#breed-name {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #f7567c;
 }
